@@ -4,9 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_alignParentStart="true"
-    android:layout_alignParentTop="true"
+    android:layout_alignParentStart="false"
+    android:layout_alignParentTop="false"
     android:layout_margin="5dp"
+    android:layout_marginTop="2dp"
     android:background="#00000000">
 
     <ImageView
@@ -14,6 +15,17 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="7dp"
+        android:layout_toRightOf="@id/ivProfileImage"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        tools:text="Bill bob" />
 
     <TextView
         android:id="@+id/tvScreenName"
@@ -32,8 +44,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvScreenName"
-        android:layout_marginStart="5dp"
+        android:layout_marginStart="7dp"
         android:layout_marginTop="2dp"
+        android:layout_marginBottom="10dp"
         android:layout_toEndOf="@id/ivProfileImage"
         android:textColor="#000000"
         tools:text="This is a tweet I made.  That smell is from the tweet I made." />
@@ -44,19 +57,70 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="false"
+
         android:layout_marginEnd="10dp"
         android:textColor="#000000"
         tools:text="15m" />
 
+    <ToggleButton
+        android:id="@+id/tbFavorite"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_below="@id/tvBody"
+        android:layout_alignParentEnd="false"
+        android:layout_marginEnd="0dp"
+        android:layout_marginRight="5dp"
+        android:layout_toLeftOf="@id/tvNumFavorites"
+        android:background="@drawable/ic_vector_heart"
+        android:checked="false"
+        android:textOff="@null"
+        android:textOn="@null" />
+
+    <ToggleButton
+        android:id="@+id/tbRetweet"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_below="@id/tvBody"
+        android:layout_alignParentEnd="false"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginRight="5dp"
+        android:layout_toLeftOf="@id/tvNumRetweet"
+        android:background="@drawable/ic_vector_retweet"
+        android:checked="false"
+        android:textOff="@null"
+        android:textOn="@null" />
+
     <TextView
-        android:id="@+id/tvName"
-        android:layout_width="wrap_content"
+        android:id="@+id/tvNumRetweet"
+        android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="5dp"
-        android:layout_toRightOf="@id/ivProfileImage"
-        android:text="Bob Bobson"
-        android:textColor="#000000"
-        android:textStyle="bold" />
+        android:layout_below="@id/tvBody"
+        android:layout_alignParentEnd="false"
+        android:layout_centerVertical="false"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginRight="60dp"
+        android:layout_toLeftOf="@id/tbFavorite"
+        tools:text="300" />
+
+    <TextView
+        android:id="@+id/tvNumFavorites"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvBody"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="2dp"
+        android:layout_marginRight="50dp"
+        android:text="435" />
+
+    <Button
+        android:id="@+id/bReply"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_below="@id/tvBody"
+        android:layout_alignLeft="@id/tvBody"
+        android:background="@drawable/ic_reply" />
+
 </RelativeLayout>
