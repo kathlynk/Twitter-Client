@@ -17,6 +17,8 @@ import com.codepath.apps.restclienttemplate.models.Tweet;
 
 import java.util.List;
 
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
+
 public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
 
     Context context;
@@ -53,6 +55,16 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
         return tweets.size();
     }
 
+    public void clear() {
+        tweets.clear();
+        notifyDataSetChanged();
+    }
+
+    public void addAll(List<Tweet> list) {
+        tweets.addAll(list);
+        notifyDataSetChanged();
+    }
+
 
     //define viewholder
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -74,7 +86,8 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
             tvBody.setText(tweet.body);
             tvScreenName.setText(tweet.user.screenName);
             tvCreatedAt.setText(getFormattedTimestamp(tweet.createdAt));
-            Glide.with(context).load(tweet.user.imageUrl).into(ivProfileImage);
+
+            Glide.with(context).load(tweet.user.imageUrl).transform(new RoundedCornersTransformation(10, 0)).into(ivProfileImage);
 
         }
 
