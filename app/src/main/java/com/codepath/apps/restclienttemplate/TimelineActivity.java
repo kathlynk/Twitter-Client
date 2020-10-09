@@ -85,6 +85,8 @@ public class TimelineActivity extends AppCompatActivity {
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
 
+        swipeRefresh.setProgressViewOffset(false, 100, 200);
+
 
         //infinite scroll listener
         scrollListener = new EndlessRecyclerViewScrollListener(linearLayoutManager) {
