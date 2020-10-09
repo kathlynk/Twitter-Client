@@ -46,6 +46,7 @@ Here's a walkthrough of implemented user stories:
 ## Notes
 
 - Still working to get data persistence with Sql-Lite implemented.  Having trouble populating the user_id(foreign key) in the tweet entity
+- Still working on embedded video media.  Struggling with 3rd party libraries.  Also, seems video media can still be labelled "photo" in the twitter API?  May have to use extended entities and search for "video" under type.  Seems videos still have a "photo" type in the simple media entity?
 
 ## Open-source libraries used
 
