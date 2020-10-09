@@ -57,4 +57,6 @@ dependencies {
     implementation 'com.malmstein:fenster:0.0.2'
     implementation 'org.parceler:parceler-api:1.1.12'
     annotationProcessor 'org.parceler:parceler:1.1.12'
+    implementation "androidx.coordinatorlayout:coordinatorlayout:1.1.0"
+    implementation 'com.google.android.material:material:1.0.0'
 }
