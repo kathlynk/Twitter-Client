@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.Target;
 import com.codepath.apps.restclienttemplate.R;
 import com.codepath.apps.restclienttemplate.TimeFormatter;
 import com.codepath.apps.restclienttemplate.models.Tweet;
@@ -103,9 +104,9 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
             tvNumFavorites.setText(Integer.toString(tweet.favorites));
             tvNumRetweets.setText(Integer.toString(tweet.retweets));
 
-            if (tweet.mediaType.equals("photo")) {
+            if (tweet.mediaType.equals("photo") || tweet.mediaType.equals("animated_gif")) {
                 ivPhotoMedia.setVisibility(View.VISIBLE);
-                Glide.with(context).load(tweet.mediaUrl).into(ivPhotoMedia);
+                Glide.with(context).load(tweet.mediaUrl).override(Target.SIZE_ORIGINAL).into(ivPhotoMedia);
             } else {
                 ivPhotoMedia.setVisibility(View.GONE);
             }
