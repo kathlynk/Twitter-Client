@@ -45,7 +45,7 @@ Here's a walkthrough of implemented user stories:
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+- Still working to get data persistence with Sql-Lite implemented.  Having trouble populating the user_id(foreign key) in the tweet entity
 
 ## Open-source libraries used
 
