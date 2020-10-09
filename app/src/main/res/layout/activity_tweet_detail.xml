@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TweetDetailActivity"
+    android:background="@color/medium_gray_30">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <RelativeLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="#00000000">
+
+        <ImageView
+            android:id="@+id/ivProfileImage"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="7dp"
+            android:layout_toRightOf="@id/ivProfileImage"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            tools:text="Bill bob" />
+
+        <TextView
+            android:id="@+id/tvScreenName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvName"
+            android:layout_alignParentTop="false"
+            android:layout_marginStart="7dp"
+            android:layout_toEndOf="@id/ivProfileImage"
+            android:alpha=".8"
+            tools:text="lennylobes2222" />
+
+        <TextView
+            android:id="@+id/tvBody"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ivProfileImage"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:autoLink="all"
+            android:linksClickable="true"
+            android:textColor="#000000"
+            tools:text="This is a tweet I made.  That smell is from the tweet I made." />
+
+
+        <ImageView
+            android:id="@+id/ivPhotoMedia"
+            android:layout_width="wrap_content"
+            android:layout_height="300dp"
+            android:layout_below="@id/tvBody"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginBottom="10dp"
+            tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/ivPhotoMedia"
+            android:background="@color/medium_gray" />
+
+        <TextView
+            android:id="@+id/tvNumRetweet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/divider"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            tools:text="300" />
+
+        <TextView
+            android:id="@+id/tvNumFavorites"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/divider"
+            android:layout_marginStart="15dp"
+
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_toEndOf="@id/tvNumRetweet"
+            android:text="435" />
+
+        <View
+            android:id="@+id/divider1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/tvNumRetweet"
+            android:background="@color/medium_gray" />
+
+        <ToggleButton
+            android:id="@+id/tbFavorite"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_below="@id/divider1"
+            android:layout_alignParentEnd="false"
+            android:layout_marginStart="140dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginRight="5dp"
+            android:layout_toRightOf="@id/tbRetweet"
+            android:background="@drawable/ic_vector_heart"
+            android:checked="false"
+            android:textOff="@null"
+            android:textOn="@null" />
+
+        <ToggleButton
+            android:id="@+id/tbRetweet"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_below="@id/divider1"
+            android:layout_alignParentEnd="false"
+            android:layout_centerHorizontal="false"
+            android:layout_marginStart="140dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginRight="5dp"
+            android:layout_toRightOf="@id/bReply"
+            android:background="@drawable/ic_vector_retweet"
+            android:checked="false"
+            android:textOff="@null"
+            android:textOn="@null" />
+
+        <Button
+            android:id="@+id/bReply"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_below="@id/divider1"
+            android:layout_alignLeft="@id/tvBody"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/ic_reply" />
+    </RelativeLayout>
+</RelativeLayout>

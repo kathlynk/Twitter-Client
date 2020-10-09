@@ -1,11 +1,12 @@
 package com.codepath.apps.restclienttemplate.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
-import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,8 +16,11 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.Target;
 import com.codepath.apps.restclienttemplate.R;
 import com.codepath.apps.restclienttemplate.TimeFormatter;
+import com.codepath.apps.restclienttemplate.TweetDetailActivity;
 import com.codepath.apps.restclienttemplate.models.Tweet;
-import com.malmstein.fenster.controller.FensterPlayerController;
+
+
+import org.parceler.Parcels;
 
 import java.util.List;
 
@@ -81,6 +85,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
         TextView tvNumFavorites;
         TextView tvNumRetweets;
         ImageView ivPhotoMedia;
+        RelativeLayout container;
 
 
 
@@ -94,9 +99,10 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
             tvNumFavorites = itemView.findViewById(R.id.tvNumFavorites);
             tvNumRetweets = itemView.findViewById(R.id.tvNumRetweet);
             ivPhotoMedia = itemView.findViewById(R.id.ivPhotoMedia);
+            container = itemView.findViewById(R.id.container);
         }
 
-        public void bind(Tweet tweet) {
+        public void bind(final Tweet tweet) {
             tvBody.setText(tweet.body);
             tvScreenName.setText(tweet.user.screenName);
             tvName.setText(tweet.user.name);
@@ -104,6 +110,10 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
             tvNumFavorites.setText(Integer.toString(tweet.favorites));
             tvNumRetweets.setText(Integer.toString(tweet.retweets));
 
+            //profile image loaded with Glide
+            Glide.with(context).load(tweet.user.profileImageUrl).transform(new RoundedCornersTransformation(10, 0)).into(ivProfileImage);
+
+            //if post has an embedded photo, loads it with glide
             if (tweet.mediaType.equals("photo") || tweet.mediaType.equals("animated_gif")) {
                 ivPhotoMedia.setVisibility(View.VISIBLE);
                 Glide.with(context).load(tweet.mediaUrl).override(Target.SIZE_ORIGINAL).into(ivPhotoMedia);
@@ -111,7 +121,18 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
                 ivPhotoMedia.setVisibility(View.GONE);
             }
 
-            Glide.with(context).load(tweet.user.imageUrl).transform(new RoundedCornersTransformation(10, 0)).into(ivProfileImage);
+            container.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(context, TweetDetailActivity.class);
+                    i.putExtra("tweet", Parcels.wrap(tweet));
+                    context.startActivity(i);
+                    //Toast.makeText(context, "Hello!", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+
 
         }
 

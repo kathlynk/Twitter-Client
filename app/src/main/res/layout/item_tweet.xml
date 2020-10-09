@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_alignParentStart="false"
@@ -41,6 +42,17 @@
         tools:text="lennylobes2222" />
 
     <TextView
+        android:id="@+id/tvCreatedAt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+
+        android:layout_marginEnd="10dp"
+        android:textColor="#000000"
+        tools:text="15m" />
+
+    <TextView
         android:id="@+id/tvBody"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -54,16 +66,18 @@
         android:textColor="#000000"
         tools:text="This is a tweet I made.  That smell is from the tweet I made." />
 
-    <TextView
-        android:id="@+id/tvCreatedAt"
+    <ImageView
+        android:id="@+id/ivPhotoMedia"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
+        android:layout_height="200dp"
+        android:layout_below="@id/tvBody"
+        android:layout_centerHorizontal="false"
+        android:layout_marginStart="7dp"
+        android:layout_marginBottom="15dp"
+        android:layout_toRightOf="@id/ivProfileImage"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
-        android:layout_marginEnd="10dp"
-        android:textColor="#000000"
-        tools:text="15m" />
+
 
     <ToggleButton
         android:id="@+id/tbFavorite"
@@ -104,7 +118,7 @@
         android:layout_marginStart="0dp"
         android:layout_marginTop="2dp"
         android:layout_marginEnd="0dp"
-        android:layout_marginRight="60dp"
+        android:layout_marginRight="50dp"
         android:layout_toLeftOf="@id/tbFavorite"
         tools:text="300" />
 
@@ -125,16 +139,6 @@
         android:layout_below="@id/ivPhotoMedia"
         android:layout_alignLeft="@id/tvBody"
         android:background="@drawable/ic_reply" />
-
-    <ImageView
-        android:id="@+id/ivPhotoMedia"
-        android:layout_width="wrap_content"
-        android:layout_height="200dp"
-        android:layout_below="@id/tvBody"
-        android:layout_marginStart="7dp"
-        android:layout_marginBottom="15dp"
-        android:layout_toRightOf="@id/ivProfileImage"
-        tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
 
 </RelativeLayout>

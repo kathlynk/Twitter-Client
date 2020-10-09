@@ -50,6 +50,7 @@ public class TimelineActivity extends AppCompatActivity {
         getSupportActionBar().setLogo(R.drawable.ic_twitter_logo_whiteonimage);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
 
+
         //initialize list of tweets and adapter
         tweets = new ArrayList<>();
         adapter = new TweetAdapter(this, tweets);

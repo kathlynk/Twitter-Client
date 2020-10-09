@@ -6,5 +6,5 @@
     android:layout_height="wrap_content"
     android:theme="@style/ToolbarTheme"
     android:background="?attr/colorAccent">
-    <!--app.titleTextAppearance="@style/Toolbar.TitleText"-->
+    app.titleTextAppearance="@style/Toolbar.TitleText"
 </androidx.appcompat.widget.Toolbar>
