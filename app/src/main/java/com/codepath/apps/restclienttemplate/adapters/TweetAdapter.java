@@ -116,7 +116,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
             //if post has an embedded photo, loads it with glide
             if (tweet.mediaType.equals("photo") || tweet.mediaType.equals("animated_gif")) {
                 ivPhotoMedia.setVisibility(View.VISIBLE);
-                Glide.with(context).load(tweet.mediaUrl).override(Target.SIZE_ORIGINAL).into(ivPhotoMedia);
+                Glide.with(context).load(tweet.mediaUrl).fitCenter().into(ivPhotoMedia);
             } else {
                 ivPhotoMedia.setVisibility(View.GONE);
             }
