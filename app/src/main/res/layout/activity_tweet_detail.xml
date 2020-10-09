@@ -73,7 +73,7 @@
             android:layout_below="@id/tvBody"
             android:layout_centerHorizontal="true"
             android:layout_marginStart="0dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="15dp"
             tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
         <View
@@ -109,6 +109,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@id/tvNumRetweet"
+            android:layout_marginBottom="5dp"
             android:background="@color/medium_gray" />
 
         <ToggleButton
