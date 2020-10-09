@@ -2,6 +2,7 @@ package com.codepath.apps.restclienttemplate.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -14,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.codepath.apps.restclienttemplate.R;
 import com.codepath.apps.restclienttemplate.TimeFormatter;
 import com.codepath.apps.restclienttemplate.models.Tweet;
+import com.malmstein.fenster.controller.FensterPlayerController;
 
 import java.util.List;
 
@@ -42,6 +44,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
     //Bind data based on position of list element
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+
         //Get data at position
         Tweet tweet = tweets.get(position);
 
@@ -76,6 +79,9 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
         TextView tvCreatedAt;
         TextView tvNumFavorites;
         TextView tvNumRetweets;
+        ImageView ivPhotoMedia;
+
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -86,6 +92,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
             tvCreatedAt = itemView.findViewById(R.id.tvCreatedAt);
             tvNumFavorites = itemView.findViewById(R.id.tvNumFavorites);
             tvNumRetweets = itemView.findViewById(R.id.tvNumRetweet);
+            ivPhotoMedia = itemView.findViewById(R.id.ivPhotoMedia);
         }
 
         public void bind(Tweet tweet) {
@@ -95,6 +102,13 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
             tvCreatedAt.setText(getFormattedTimestamp(tweet.createdAt));
             tvNumFavorites.setText(Integer.toString(tweet.favorites));
             tvNumRetweets.setText(Integer.toString(tweet.retweets));
+
+            if (tweet.mediaType.equals("photo")) {
+                ivPhotoMedia.setVisibility(View.VISIBLE);
+                Glide.with(context).load(tweet.mediaUrl).into(ivPhotoMedia);
+            } else {
+                ivPhotoMedia.setVisibility(View.GONE);
+            }
 
             Glide.with(context).load(tweet.user.imageUrl).transform(new RoundedCornersTransformation(10, 0)).into(ivProfileImage);
 
