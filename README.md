@@ -31,16 +31,16 @@ The following **optional** features are implemented:
 Here's a walkthrough of implemented user stories:
 
 ### Login and Home Timeline
-<img src="walkthroughs/portrait_twitter1.gif" width=250><br>
+<img src="walkthroughs/Portrait_twitter1.gif" width=250><br>
 
 ### Toolbar Collapse on Scroll
-<img src="walkthroughs/portrait_twitter2.gif" width=250><br>
+<img src="walkthroughs/Portrait_twitter2.gif" width=250><br>
 
 ### Swipe to Refresh
-<img src="walkthroughs/portrait_twitter3.gif" width=250><br>
+<img src="walkthroughs/Portrait_twitter3.gif" width=250><br>
 
 ### Clickable Links, Tweet Detail View, Embedded Media, Infinite Scroll!
-<img src="walkthroughs/portrait_twitter4.gif" width=250><br>
+<img src="walkthroughs/Portrait_twitter4.gif" width=250><br>
 
 
 ## Notes
