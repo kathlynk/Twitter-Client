@@ -2,6 +2,7 @@ package com.codepath.apps.restclienttemplate.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -9,14 +10,18 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Toast;
 
 import com.codepath.apps.restclienttemplate.EndlessRecyclerViewScrollListener;
+import com.codepath.apps.restclienttemplate.FragmentComposeTweet;
 import com.codepath.apps.restclienttemplate.R;
 import com.codepath.apps.restclienttemplate.TwitterApp;
 import com.codepath.apps.restclienttemplate.TwitterClient;
 import com.codepath.apps.restclienttemplate.adapters.TweetAdapter;
 import com.codepath.apps.restclienttemplate.models.Tweet;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,7 +35,7 @@ import okhttp3.Headers;
 import static androidx.recyclerview.widget.DividerItemDecoration.HORIZONTAL;
 import static androidx.recyclerview.widget.DividerItemDecoration.VERTICAL;
 
-public class TimelineActivity extends AppCompatActivity {
+public class TimelineActivity extends AppCompatActivity implements FragmentComposeTweet.ComposeTweetListener {
 
     public static final String TAG = "TimelineActivity";
 
@@ -40,12 +45,15 @@ public class TimelineActivity extends AppCompatActivity {
     TweetAdapter adapter;
     SwipeRefreshLayout swipeRefresh;
     EndlessRecyclerViewScrollListener scrollListener;
+    FloatingActionButton mFab;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timeline);
+
+
 
         // toolbar and logo
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -102,6 +110,20 @@ public class TimelineActivity extends AppCompatActivity {
         };
         rvTimeline.addOnScrollListener(scrollListener);
 
+        //Fab
+        mFab = (FloatingActionButton) findViewById(R.id.mFab);
+        mFab.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                showComposeDialog();
+            }
+        });
+
+    }
+
+    private void showComposeDialog() {
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentComposeTweet fragmentComposeTweet = FragmentComposeTweet.newInstance();
+        fragmentComposeTweet.show(fm, "fragment_compose_tweet");
     }
 
     public void fetchTimelineAsync(int page) {
@@ -178,4 +200,9 @@ public class TimelineActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onFinishComposeTweet(Tweet tweet) {
+        //placeholder
+        populateHomeTimeline();
+    }
 }
