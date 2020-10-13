@@ -55,13 +55,9 @@ public class TimelineActivity extends AppCompatActivity implements FragmentCompo
 
 
 
-        // toolbar and logo
+        // toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
-        getSupportActionBar().setLogo(R.drawable.ic_twitter_logo_whiteonimage);
-        getSupportActionBar().setDisplayUseLogoEnabled(true);
-
+        configureToolbar(toolbar);
 
         //initialize list of tweets and adapter
         tweets = new ArrayList<>();
@@ -120,12 +116,16 @@ public class TimelineActivity extends AppCompatActivity implements FragmentCompo
 
     }
 
+
+    //shows compose tweet dialog fragment
     private void showComposeDialog() {
         FragmentManager fm = getSupportFragmentManager();
         FragmentComposeTweet fragmentComposeTweet = FragmentComposeTweet.newInstance();
         fragmentComposeTweet.show(fm, "fragment_compose_tweet");
     }
 
+
+    //reloads timeline -- for swipe refresh
     public void fetchTimelineAsync(int page) {
         client.getHomeTimeline(new JsonHttpResponseHandler() {
 
@@ -149,6 +149,8 @@ public class TimelineActivity extends AppCompatActivity implements FragmentCompo
         });
     }
 
+
+    //populates home timeline when activity is created
     private void populateHomeTimeline() {
         client.getHomeTimeline(new JsonHttpResponseHandler() {
             @Override
@@ -172,6 +174,8 @@ public class TimelineActivity extends AppCompatActivity implements FragmentCompo
         });
     }
 
+
+    //adds more tweets to bottom of list for infinite scroll
     public void loadMoreData() {
         // 1. Send an API request to retrieve appropriate paginated data
         client.getNextTweetPage(new JsonHttpResponseHandler() {
@@ -200,9 +204,28 @@ public class TimelineActivity extends AppCompatActivity implements FragmentCompo
 
     }
 
+
+    //when tweet compose dialog is finished, adds composed tweet to top of list
     @Override
     public void onFinishComposeTweet(Tweet tweet) {
-        //placeholder
-        populateHomeTimeline();
+
+        //manually insert tweet in timeline
+        tweets.add(0, tweet);
+        adapter.notifyItemInserted(0);
+
+        //scrolls recycler view up -> newly inserted tweet visible at top
+        rvTimeline.smoothScrollToPosition(0);
+
+        //add composed tweet to timeline via refresh **
+        //populateHomeTimeline();
+    }
+
+
+    //toolbar settings
+    private void configureToolbar(Toolbar toolbar) {
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setLogo(R.drawable.ic_twitter_logo_whiteonimage);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
     }
 }
