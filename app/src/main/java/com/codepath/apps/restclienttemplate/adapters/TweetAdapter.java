@@ -120,6 +120,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
                 ivPhotoMedia.setVisibility(View.GONE);
             }
 
+            //if user clicks a tweet, launches the detail view activity
             container.setOnClickListener(new View.OnClickListener() {
 
                 @Override

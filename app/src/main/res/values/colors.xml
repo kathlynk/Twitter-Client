@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#F0F0F0</color>
-    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorPrimary">@color/twitter_blue_50</color>
+    <color name="colorPrimaryDark">@color/twitter_blue</color>
     <color name="colorAccent">#0084b4</color>
     <color name="medium_green">#ff17bf63</color>
     <color name="medium_gray">#ffaab8c2</color>
@@ -22,5 +22,4 @@
     <color name="inline_action_pressed">@color/medium_gray_50</color>
     <color name="inline_action_retweet">@color/medium_green</color>
     <color name="inline_action_retweet_pressed">@color/medium_gray_50</color>
-
 </resources>
