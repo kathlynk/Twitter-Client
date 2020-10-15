@@ -140,10 +140,9 @@ public class FragmentComposeTweet extends DialogFragment {
                     Toast.makeText(getContext(), "Tweet character limit exceeded", Toast.LENGTH_SHORT).show();
                     return;
                 }
-
+                
                 //Make API call
                 client.postTweet(tweetContent, new JsonHttpResponseHandler() {
-
                     @Override
                     public void onSuccess(int statusCode, Headers headers, JSON json) {
                         Log.i(TAG, "onSuccess: Tweet Posted");
