@@ -7,6 +7,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
@@ -42,8 +44,9 @@ public class FragmentComposeTweet extends DialogFragment {
 
     EditText etCompose;
     Button btnTweet;
-
+    TextView tvCharCount;
     TwitterClient client;
+    Button bClose;
 
 
     public FragmentComposeTweet() {
@@ -78,6 +81,9 @@ public class FragmentComposeTweet extends DialogFragment {
 
         etCompose = (EditText) view.findViewById(R.id.etCompose);
         btnTweet = (Button) view.findViewById(R.id.btnTweet);
+        tvCharCount = (TextView) view.findViewById(R.id.tvCharCount);
+        tvCharCount.setText(Integer.toString(MAX_TWEET_LENGTH));
+        bClose = (Button) view.findViewById(R.id.bClose);
 
         //set click listener on tweet button
         btnTweet.setOnClickListener(new View.OnClickListener() {
@@ -118,9 +124,44 @@ public class FragmentComposeTweet extends DialogFragment {
                         Log.e(TAG, "onFailure to publish tweet", throwable);
                     }
                 });
+            }
+        });
+
+        //listener for char count in compose tweet.  Updates remaining character count next to tweet button
+        etCompose.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                tvCharCount.setText(String.valueOf(MAX_TWEET_LENGTH-s.length()));
+                if (MAX_TWEET_LENGTH-s.length() < 0) {
+                    tvCharCount.setTextColor(getResources().getColor(R.color.medium_red));
+                    btnTweet.setEnabled(false);
+                } else {
+                    tvCharCount.setTextColor(getResources().getColor(R.color.medium_gray));
+                    btnTweet.setEnabled(true);
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
 
             }
         });
+
+        bClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
+            }
+        });
+
+
+
+
     }
 
     public void onResume() {
