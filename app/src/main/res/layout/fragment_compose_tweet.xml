@@ -59,4 +59,38 @@
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
         android:background="@drawable/ic_vector_close" />
+
+    <ImageView
+        android:id="@+id/ivUserProfileImage"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="20dp"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/tvUserName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="5dp"
+        android:layout_toLeftOf="@id/ivUserProfileImage"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        tools:text="Bill bob" />
+
+    <TextView
+        android:id="@+id/tvUserScreenName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvUserName"
+        android:layout_alignParentTop="false"
+        android:layout_marginStart="7dp"
+        android:layout_marginEnd="5dp"
+        android:layout_toLeftOf="@id/ivUserProfileImage"
+        android:alpha=".8"
+        tools:text="lennylobes2222" />
 </RelativeLayout>

@@ -51,7 +51,7 @@ public class TwitterClient extends OAuthBaseClient {
 		params.put("count", 50);
 		params.put("since_id", 1);
 		params.put("include_entities", true);
-		//client.get(apiUrl, params, handler);
+		client.get(apiUrl, params, handler);
 	}
 
 	public void getNextTweetPage(JsonHttpResponseHandler handler, long max_id) {
@@ -71,5 +71,12 @@ public class TwitterClient extends OAuthBaseClient {
 		params.put("status", tweetContent);
 
 		client.post(apiUrl, params, "", handler);
+	}
+
+	public void getCurrentUserInfo(JsonHttpResponseHandler handler) {
+		String apiUrl = getApiUrl("account/verify_credentials.json");
+		// Can specify query string params directly or through RequestParams.
+		RequestParams params = new RequestParams();
+		client.get(apiUrl, params, handler);
 	}
 }

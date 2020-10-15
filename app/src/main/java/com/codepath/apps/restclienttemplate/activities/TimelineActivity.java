@@ -29,6 +29,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -42,6 +43,8 @@ import static androidx.recyclerview.widget.DividerItemDecoration.VERTICAL;
 public class TimelineActivity extends AppCompatActivity implements FragmentComposeTweet.ComposeTweetListener {
 
     public static final String TAG = "TimelineActivity";
+
+    User user;
 
     TwitterClient client;
     TweetDao tweetDao;
@@ -128,6 +131,7 @@ public class TimelineActivity extends AppCompatActivity implements FragmentCompo
             }
         });
 
+        getUserInfo();
         //get tweets for home timeline using Twitter API
         populateHomeTimeline();
     }
@@ -136,7 +140,7 @@ public class TimelineActivity extends AppCompatActivity implements FragmentCompo
     //shows compose tweet dialog fragment
     private void showComposeDialog() {
         FragmentManager fm = getSupportFragmentManager();
-        FragmentComposeTweet fragmentComposeTweet = FragmentComposeTweet.newInstance();
+        FragmentComposeTweet fragmentComposeTweet = FragmentComposeTweet.newInstance(user);
         fragmentComposeTweet.show(fm, "fragment_compose_tweet");
     }
 
@@ -258,5 +262,28 @@ public class TimelineActivity extends AppCompatActivity implements FragmentCompo
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setLogo(R.drawable.ic_twitter_logo_whiteonimage);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
+    }
+
+    //populates home timeline when activity is created
+    private void getUserInfo() {
+        client.getCurrentUserInfo(new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Headers headers, JSON json) {
+                Log.i(TAG, "User onSuccess" + json.toString());
+                JSONObject jsonObject = json.jsonObject;
+                try {
+                    user = User.fromJson(jsonObject);
+                } catch (JSONException e) {
+                    Log.e(TAG, "Json exception", e);
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
+                Log.e(TAG, "onFailure", throwable);
+            }
+
+        });
     }
 }

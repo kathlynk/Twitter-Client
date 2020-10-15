@@ -124,12 +124,12 @@
 
     <TextView
         android:id="@+id/tvNumFavorites"
-        android:layout_width="40dp"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/ivPhotoMedia"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="2dp"
-        android:layout_marginRight="50dp"
+        android:layout_marginRight="40dp"
         android:text="435" />
 
     <Button
