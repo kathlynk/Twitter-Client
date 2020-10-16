@@ -32,7 +32,7 @@ The following **optional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-
+<img src="walkthroughs/Portrait_Twitter_Part2.gif" width=250><br>
 
 
 ## User Stories - Part 1
